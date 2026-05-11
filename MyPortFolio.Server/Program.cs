@@ -36,6 +36,7 @@ builder.Services.AddDbContext<PortfolioDbContext>(options => options.UseSqlServe
 builder.Services.AddScoped<IAboutMeRepository, AboutMeRepository>();
 builder.Services.AddScoped<IAboutMeService, AboutMeService>();
 builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IEducationService, EducationService>();
 
 var app = builder.Build();
 
