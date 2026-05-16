@@ -24,5 +24,9 @@ namespace MyPortFolio.Server.DTOs
         public DateTime? EndDate { get; set; }
 
         public bool IsCurrent { get; set; }
+
+        public bool IsActive { get; set; } = true;
+
+        public DateTime CreatedAt { get; set; }
     }
 }

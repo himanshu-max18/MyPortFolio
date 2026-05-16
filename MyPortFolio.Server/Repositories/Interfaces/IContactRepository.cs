@@ -8,5 +8,7 @@ namespace MyPortFolio.Server.Repositories.Interfaces
         Task<IEnumerable<Contact>> GetContactsAsync(CancellationToken ct = default);
         Task<Contact?> GetContactByIdAsync(int id, CancellationToken ct = default);
         Task<Contact> CreateContactAsync(Contact contact, CancellationToken ct = default);
+        Task<Contact> MarkAsReadAsync(int id, CancellationToken ct = default);
+        Task DeleteContactAsync(int id, CancellationToken ct = default);
     }
 }

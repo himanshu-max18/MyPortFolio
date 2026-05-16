@@ -34,9 +34,13 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<PortfolioDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyCon")));
 builder.Services.AddScoped<IAboutMeRepository, AboutMeRepository>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IEducationRepository, EducationRepository>();
+builder.Services.AddScoped<IExperienceRepository, ExperienceRepository>();
 builder.Services.AddScoped<IAboutMeService, AboutMeService>();
 builder.Services.AddScoped<IContactService, ContactService>();
 builder.Services.AddScoped<IEducationService, EducationService>();
+builder.Services.AddScoped<IExperienceService, ExperienceService>();
 
 var app = builder.Build();
 

@@ -13,30 +13,20 @@ namespace MyPortFolio.Server.Services
             this._contactRepository = contactRepository;
         }
         
-        public async Task<IEnumerable<ContactDto>> GetContactDtoAsync(CancellationToken ct = default)
+        public async Task<IEnumerable<ContactResponseDto>> GetContactDtoAsync(CancellationToken ct = default)
         {
             var contacts = await _contactRepository.GetContactsAsync(ct);
-            return contacts.Select(c => new ContactDto
-            {
-                Name = c.Name,
-                Email = c.Email,
-                Message = c.Message
-            });
+            return contacts.Select(MapToDto);
         }
 
-        public async Task<ContactDto?> GetContactDtoByIdAsync(int id, CancellationToken ct = default)
+        public async Task<ContactResponseDto?> GetContactDtoByIdAsync(int id, CancellationToken ct = default)
         {
             var contact = await _contactRepository.GetContactByIdAsync(id, ct);
             if (contact == null) return null;
-            return new ContactDto
-            {
-                Name = contact.Name,
-                Email = contact.Email,
-                Message = contact.Message
-            };
+            return MapToDto(contact);
         }
 
-        public async Task<ContactDto> CreateContactDtoAsync(ContactDto contactDto, CancellationToken ct = default)
+        public async Task<ContactResponseDto> CreateContactDtoAsync(CreateContactDto contactDto, CancellationToken ct = default)
         {
             var contact = new Contact
             {
@@ -46,14 +36,28 @@ namespace MyPortFolio.Server.Services
             };
 
             var createdContact = await _contactRepository.CreateContactAsync(contact, ct);
-
-            var result = new ContactDto
-            {
-                Name = createdContact.Name,
-                Email = createdContact.Email,
-                Message = createdContact.Message
-            };
-            return result;
+            return MapToDto(createdContact);
         }
+
+        public async Task<ContactResponseDto> MarkAsReadAsync(int id, CancellationToken ct = default)
+        {
+            var contact = await _contactRepository.MarkAsReadAsync(id, ct); 
+            return MapToDto(contact);
+        }
+
+        public async Task DeleteContactAsync(int id, CancellationToken ct = default)
+        {
+            await _contactRepository.DeleteContactAsync(id, ct);
+        }
+
+        private static ContactResponseDto MapToDto(Contact contact) => new()
+        {
+            Id = contact.Id,
+            Name = contact.Name,
+            Email = contact.Email,
+            Message = contact.Message,
+            IsRead = contact.IsRead,
+            SentAt = contact.SentAt
+        };
     }
 }

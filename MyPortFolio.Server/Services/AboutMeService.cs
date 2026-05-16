@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MyPortFolio.Server.DTOs;
+﻿using MyPortFolio.Server.DTOs;
 using MyPortFolio.Server.Models;
 using MyPortFolio.Server.Repositories.Interfaces;
 using MyPortFolio.Server.Services.Interfaces;
@@ -17,16 +16,7 @@ namespace MyPortFolio.Server.Services
         public async Task<IEnumerable<AboutMeDto>> GetAboutMeDtosAsync(CancellationToken ct = default)
         {
             var aboutMeList =  await _aboutMeRepository.GetAboutMeAsync(ct);
-            return aboutMeList.Select(x => new AboutMeDto
-            {
-                FullName = x.FullName,
-                Tagline = x.Tagline,
-                Bio = x.Bio,
-                Email = x.Email,
-                GitHubUrl = x.GitHubUrl,
-                LinkedInUrl = x.LinkedInUrl,
-                ResumeUrl = x.ResumeUrl
-            });
+            return aboutMeList.Select(MapToDto);
         }
 
         public async Task<AboutMeDto?> GetAboutMeDtoByIdAsync(int id, CancellationToken ct = default)
@@ -36,16 +26,7 @@ namespace MyPortFolio.Server.Services
             if (aboutMe == null)
                 return null;
 
-            return new AboutMeDto
-            {
-                FullName = aboutMe.FullName,
-                Tagline = aboutMe.Tagline,
-                Bio = aboutMe.Bio,
-                Email = aboutMe.Email,
-                GitHubUrl = aboutMe.GitHubUrl,
-                LinkedInUrl = aboutMe.LinkedInUrl,
-                ResumeUrl = aboutMe.ResumeUrl
-            };
+            return MapToDto(aboutMe);
         }
         public async Task<AboutMeDto> CreateAboutMeDtoAsync(AboutMeDto aboutMeDto, CancellationToken ct = default)
         {
@@ -64,17 +45,7 @@ namespace MyPortFolio.Server.Services
             var created = await _aboutMeRepository.CreateAboutMeAsync(aboutMe, ct);
 
             // Model → DTO return karo
-            return new AboutMeDto
-            {
-                Id = created.Id,
-                FullName = created.FullName,
-                Tagline = created.Tagline,
-                Bio = created.Bio,
-                Email = created.Email,
-                GitHubUrl = created.GitHubUrl,
-                LinkedInUrl = created.LinkedInUrl,
-                ResumeUrl = created.ResumeUrl
-            };
+            return MapToDto(created);
         }
 
         public async Task DeleteAboutMeDtoAsync(int id, CancellationToken ct = default)
@@ -88,8 +59,12 @@ namespace MyPortFolio.Server.Services
 
         public async Task<AboutMeDto> UpdateAboutMeDtoAsync(int id, AboutMeDto aboutMeDto, CancellationToken ct = default)
         {
+            if (id != aboutMeDto.Id)
+                throw new ArgumentException("URL ID and Body ID do not match.");
+
             var aboutMe = new AboutMe
             {
+                Id = aboutMeDto.Id,
                 FullName = aboutMeDto.FullName,
                 Tagline = aboutMeDto.Tagline,
                 Bio = aboutMeDto.Bio,
@@ -103,17 +78,21 @@ namespace MyPortFolio.Server.Services
             var updated = await _aboutMeRepository.UpdateAboutMeAsync(aboutMe, id, ct);
 
             // Model → DTO return karo
-            return new AboutMeDto
-            {
-                Id = updated.Id,
-                FullName = updated.FullName,
-                Tagline = updated.Tagline,
-                Bio = updated.Bio,
-                Email = updated.Email,
-                GitHubUrl = updated.GitHubUrl,
-                LinkedInUrl = updated.LinkedInUrl,
-                ResumeUrl = updated.ResumeUrl
-            };
+            return MapToDto(updated);
         }
+
+        private static AboutMeDto MapToDto(AboutMe aboutMe) => new()
+        {
+
+            Id = aboutMe.Id,
+            FullName = aboutMe.FullName,
+            Tagline = aboutMe.Tagline,
+            Bio = aboutMe.Bio,
+            Email = aboutMe.Email,
+            GitHubUrl = aboutMe.GitHubUrl,
+            LinkedInUrl = aboutMe.LinkedInUrl,
+            ResumeUrl = aboutMe.ResumeUrl
+
+        };
     }
 }

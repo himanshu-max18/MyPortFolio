@@ -19,7 +19,7 @@ namespace MyPortFolio.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ContactDto>>> Get(CancellationToken ct)
+        public async Task<ActionResult<IEnumerable<ContactResponseDto>>> Get(CancellationToken ct)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace MyPortFolio.Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ContactDto>> GetById(int id, CancellationToken ct)
+        public async Task<ActionResult<ContactResponseDto>> GetById(int id, CancellationToken ct)
         {
             try
             {
@@ -53,17 +53,45 @@ namespace MyPortFolio.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ContactDto>> Create([FromBody] ContactDto contactDto, CancellationToken ct)
+        public async Task<ActionResult<ContactResponseDto>> Create([FromBody] CreateContactDto contactDto, CancellationToken ct)
         {
             try
             {
                 await _contactService.CreateContactDtoAsync(contactDto, ct);
-                return StatusCode(201, "Message sent successfully!");
+                return StatusCode(StatusCodes.Status201Created, new { Message = "Message sent successfully! " });
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error occurred in Create");
                 return StatusCode(500, "Internal Server Error");
+            }
+        }
+
+        [HttpPatch("{id}/read")]
+        public async Task<ActionResult<ContactResponseDto>> MarkAsRead(int id, CancellationToken ct)
+        {
+            try
+            {
+                var updated = await _contactService.MarkAsReadAsync(id, ct);
+                return Ok(updated);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id, CancellationToken ct)
+        {
+            try
+            {
+                await _contactService.DeleteContactAsync(id, ct);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
         }
     }

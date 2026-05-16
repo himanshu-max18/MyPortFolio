@@ -57,8 +57,8 @@ namespace MyPortFolio.Server.Controllers
         {
             try
             {
-                await _aboutMeService.CreateAboutMeDtoAsync(aboutMeDto, ct);
-                return StatusCode(201, "Message sent successfully!");
+                var created = await _aboutMeService.CreateAboutMeDtoAsync(aboutMeDto, ct);
+                return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
             }
             catch (Exception ex)
             {
@@ -79,10 +79,10 @@ namespace MyPortFolio.Server.Controllers
                 }
                 return Ok(updateAboutMe);
             }
-            catch (Exception ex)
+            catch (KeyNotFoundException ex)
             {
-                _logger.LogError(ex, "Error occurred During Update");
-                return StatusCode(500, "Internal Server Error");
+                _logger.LogWarning(ex.Message);
+                return NotFound(ex.Message);
             }
         }
 

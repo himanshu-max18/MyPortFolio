@@ -25,12 +25,15 @@ namespace MyPortFolio.Server.Repositories
         public async Task<Education> AddEducationAsync(Education education, CancellationToken ct = default)
         {
             ArgumentNullException.ThrowIfNull(education);
+            education.CreatedAt = DateTime.UtcNow;
+            education.IsActive = true;
+
             await _context.Educations.AddAsync(education, ct);
             await _context.SaveChangesAsync(ct);
             return education;
         }
 
-        public async Task UpdateEducationAsync(Education education, int id, CancellationToken ct = default)
+        public async Task<Education> UpdateEducationAsync(Education education, int id, CancellationToken ct = default)
         {
             ArgumentNullException.ThrowIfNull(education);
             var existingEducation = await GetEducationByIdAsync(id, ct);
@@ -39,8 +42,15 @@ namespace MyPortFolio.Server.Repositories
                 throw new KeyNotFoundException($"Education with id {id} not found.");
             }
 
-            _context.Entry(existingEducation).CurrentValues.SetValues(education);
+            existingEducation.University = education.University;
+            existingEducation.Degree = education.Degree;
+            existingEducation.FieldOfStudy = education.FieldOfStudy;
+            existingEducation.StartYear = education.StartYear;
+            existingEducation.EndYear = education.EndYear;
+            existingEducation.IsActive = education.IsActive;
+
             await _context.SaveChangesAsync(ct);
+            return existingEducation;
         }
 
         public async Task DeleteEducationAsync(Education education, CancellationToken ct = default)

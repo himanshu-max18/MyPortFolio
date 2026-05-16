@@ -27,7 +27,7 @@ namespace MyPortFolio.Server.Repositories
             ArgumentNullException.ThrowIfNull(aboutMe);
             aboutMe.UpdatedAt = DateTime.UtcNow;
 
-            await _context.AboutMe.AddAsync(aboutMe);
+            await _context.AboutMe.AddAsync(aboutMe, ct);
             await _context.SaveChangesAsync(ct);
 
             return aboutMe;
@@ -42,6 +42,7 @@ namespace MyPortFolio.Server.Repositories
                 throw new KeyNotFoundException($"AboutMe with id {id} not found.");
 
             existingAboutMe.Tagline = aboutMe.Tagline;
+            existingAboutMe.FullName = aboutMe.FullName;
             existingAboutMe.Bio = aboutMe.Bio;
             existingAboutMe.Email = aboutMe.Email;
             existingAboutMe.GitHubUrl = aboutMe.GitHubUrl;
@@ -50,7 +51,6 @@ namespace MyPortFolio.Server.Repositories
 
             existingAboutMe.UpdatedAt = DateTime.UtcNow;
 
-            _context.AboutMe.Update(existingAboutMe);
             await _context.SaveChangesAsync(ct);
             return existingAboutMe;
         }

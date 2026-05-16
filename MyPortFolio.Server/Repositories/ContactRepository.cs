@@ -27,11 +27,33 @@ namespace MyPortFolio.Server.Repositories
         {
             ArgumentNullException.ThrowIfNull(contact);
             contact.SentAt = DateTime.UtcNow;
+            contact.IsRead = false;
 
-            await _context.Contacts.AddAsync(contact);
+            await _context.Contacts.AddAsync(contact, ct);
             await _context.SaveChangesAsync(ct);
 
             return contact;
+        }
+
+        public async Task<Contact> MarkAsReadAsync(int id, CancellationToken ct = default)
+        {
+            var contact = await GetContactByIdAsync(id, ct);
+            if (contact == null)
+                throw new KeyNotFoundException($"Contact with id {id} not found.");
+
+            contact.IsRead = true;
+            await _context.SaveChangesAsync(ct);
+            return contact;
+        }
+
+        public async Task DeleteContactAsync(int id, CancellationToken ct = default)
+        {
+            var contact = await GetContactByIdAsync(id, ct);
+            if (contact == null)
+                throw new KeyNotFoundException($"Contact with id {id} not found.");
+
+            _context.Contacts.Remove(contact);
+            await _context.SaveChangesAsync(ct);
         }
     }
 }

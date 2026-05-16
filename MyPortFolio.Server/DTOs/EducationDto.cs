@@ -23,5 +23,7 @@ namespace MyPortFolio.Server.DTOs
 
         [Range(1950, 2100)]
         public int EndYear { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

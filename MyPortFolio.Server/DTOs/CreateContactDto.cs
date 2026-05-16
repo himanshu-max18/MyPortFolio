@@ -2,7 +2,7 @@
 
 namespace MyPortFolio.Server.DTOs
 {
-    public class ContactDto
+    public class CreateContactDto
     {
         [Required]
         [StringLength(100, MinimumLength = 2)]

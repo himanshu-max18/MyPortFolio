@@ -57,8 +57,8 @@ namespace MyPortFolio.Server.Controllers
         {
             try
             {
-                await _educationService.CreateEducationDtoAsync(educationDto, ct);
-                return StatusCode(201, "Created successfully!");
+                var created = await _educationService.CreateEducationDtoAsync(educationDto, ct);
+                return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
             }
             catch (Exception ex)
             {
@@ -72,17 +72,13 @@ namespace MyPortFolio.Server.Controllers
         {
             try
             {
-                await _educationService.UpdateEducationDtoAsync(educationDto, id, ct);
-                return NoContent(); 
+                var updated = await _educationService.UpdateEducationDtoAsync(educationDto, id, ct);
+                return Ok(updated);
             }
             catch (KeyNotFoundException ex)
             {
+                _logger.LogWarning(ex.Message);
                 return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error occurred during Update");
-                return StatusCode(500, "Internal Server Error");
             }
         }
 
@@ -98,11 +94,6 @@ namespace MyPortFolio.Server.Controllers
             {
                 _logger.LogWarning(ex.Message);
                 return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error occurred During Delete");
-                return StatusCode(500, "Internal Server Error");
             }
         }
     }

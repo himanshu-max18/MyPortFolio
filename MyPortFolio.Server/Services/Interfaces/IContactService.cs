@@ -4,8 +4,10 @@ namespace MyPortFolio.Server.Services.Interfaces
 {
     public interface IContactService
     {
-        Task<IEnumerable<ContactDto>> GetContactDtoAsync(CancellationToken ct = default);
-        Task<ContactDto?> GetContactDtoByIdAsync(int id, CancellationToken ct = default);
-        Task<ContactDto> CreateContactDtoAsync(ContactDto contactDto, CancellationToken ct = default);
+        Task<IEnumerable<ContactResponseDto>> GetContactDtoAsync(CancellationToken ct = default);
+        Task<ContactResponseDto?> GetContactDtoByIdAsync(int id, CancellationToken ct = default);
+        Task<ContactResponseDto> CreateContactDtoAsync(CreateContactDto contactDto, CancellationToken ct = default);
+        Task<ContactResponseDto> MarkAsReadAsync(int id, CancellationToken ct = default);
+        Task DeleteContactAsync(int id, CancellationToken ct = default);
     }
 }

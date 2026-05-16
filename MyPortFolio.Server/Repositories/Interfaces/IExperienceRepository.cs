@@ -6,8 +6,8 @@ namespace MyPortFolio.Server.Repositories.Interfaces
     {
         Task<IEnumerable<Experience>> GetExperiencesAsync(CancellationToken ct = default);
         Task<Experience?> GetExperienceByIdAsync(int id, CancellationToken ct = default);
-        Task AddExperienceAsync(Experience experience, CancellationToken ct = default);
-        Task UpdateExperienceAsync(int id, Experience experience, CancellationToken ct = default);
+        Task<Experience> CreateExperienceAsync(Experience experience, CancellationToken ct = default);
+        Task<Experience> UpdateExperienceAsync(int id, Experience experience, CancellationToken ct = default);
         Task DeleteExperienceAsync(Experience experience, CancellationToken ct = default);
     }
 }
