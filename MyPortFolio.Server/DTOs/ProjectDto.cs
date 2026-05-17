@@ -24,6 +24,15 @@ namespace MyPortFolio.Server.DTOs
         [Url]
         public string? LiveUrl { get; set; }
 
+        [Url]
+        public string? ImageUrl { get; set; }
+
         public bool IsFeatured { get; set; }
+
+        public bool IsActive { get; set; } = true;
+
+        public DateTime CreatedAt { get; set; }
+
+        public DateTime UpdatedAt { get; set; }
     }
 }

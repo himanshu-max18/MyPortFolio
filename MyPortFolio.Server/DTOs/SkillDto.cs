@@ -12,5 +12,9 @@ namespace MyPortFolio.Server.DTOs
 
         [StringLength(50)]
         public string? Category { get; set; }
+
+        public bool IsActive { get; set; } = true;
+
+        public DateTime CreatedAt { get; set; }
     }
 }
