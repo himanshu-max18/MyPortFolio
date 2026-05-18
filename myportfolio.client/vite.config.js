@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url';
-
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import plugin from '@vitejs/plugin-react';
 import fs from 'fs';
@@ -36,7 +36,7 @@ if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [plugin()],
+    plugins: [plugin(), tailwindcss()],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
