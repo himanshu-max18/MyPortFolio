@@ -1,2 +1,11 @@
 @import "tailwindcss";
 
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0F172A;
+    color: #E2E8F0;
+}
+        
+h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', sans-serif;
+}

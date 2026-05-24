@@ -35,41 +35,71 @@ const ContactSection = () => {
     };
 
     return (
-        <section id="contact" className="py-20 bg-white">
-            <div className="max-w-4xl mx-auto px-4">
+        <section id="contact" className="py-20 bg-slate-900 relative overflow-hidden">
+
+            {/* Background glow effects */}
+            <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 right-20 w-72 h-72 bg-violet-500/10 rounded-full blur-3xl"></div>
+
+            <div className="max-w-4xl mx-auto px-4 relative z-10">
 
                 {/* Heading */}
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl font-bold text-gray-800 mb-4">Contact</h2>
-                    <p className="text-gray-500">Get in touch with me</p>
+                    <h2 className="text-4xl font-bold text-white mb-4">Let's Connect</h2>
+                    <p className="text-slate-400">Have a project in mind? Let's work together!</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-                    <div className="flex flex-col gap-6">
-                        <p className="text-gray-600 leading-relaxed">
+                    {/* Left - Info Cards */}
+                    <div className="flex flex-col gap-4">
+
+                        <p className="text-slate-400 leading-relaxed mb-2">
                             Feel free to reach out for collaborations, opportunities, or just a friendly chat!
                         </p>
 
-                        <div className="flex flex-col gap-4">
-                            <a href={`mailto:${aboutMe?.email}`} className="flex items-center gap-3 text-gray-600 hover:text-blue-500 transition">
-                                <FaEnvelope className="text-red-400 text-xl" />
-                                {aboutMe?.email}
-                            </a>
-                            <a href={aboutMe?.gitHubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-gray-600 hover:text-black-600 transition">
-                                <FaGithub className="text-black-500 text-xl" />
-                                GitHub
-                            </a>
-                            <a href={aboutMe?.linkedInUrl} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-gray-600 hover:text-blue-500 transition">
-                                <FaLinkedin className="text-blue-500 text-xl" />
-                                LinkedIn
-                            </a>
-                        </div>
+                        {/* Email Card */}
+                        <a href={`mailto:${aboutMe?.email}`}
+                            className="flex items-center gap-4 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-4 hover:border-blue-500/50 transition group">
+                            <div className="bg-blue-500/10 p-3 rounded-lg">
+                                <FaEnvelope className="text-blue-400 text-xl" />
+                            </div>
+                            <div>
+                                <p className="text-slate-400 text-xs mb-1">Email</p>
+                                <p className="text-white text-sm group-hover:text-blue-400 transition">{aboutMe?.email}</p>
+                            </div>
+                        </a>
+
+                        {/* GitHub Card */}
+                        <a href={aboutMe?.gitHubUrl} target="_blank" rel="noreferrer"
+                            className="flex items-center gap-4 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-4 hover:border-slate-400/50 transition group">
+                            <div className="bg-slate-500/10 p-3 rounded-lg">
+                                <FaGithub className="text-slate-300 text-xl" />
+                            </div>
+                            <div>
+                                <p className="text-slate-400 text-xs mb-1">GitHub</p>
+                                <p className="text-white text-sm group-hover:text-slate-300 transition">View my work</p>
+                            </div>
+                        </a>
+
+                        {/* LinkedIn Card */}
+                        <a href={aboutMe?.linkedInUrl} target="_blank" rel="noreferrer"
+                            className="flex items-center gap-4 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-4 hover:border-blue-400/50 transition group">
+                            <div className="bg-blue-400/10 p-3 rounded-lg">
+                                <FaLinkedin className="text-blue-400 text-xl" />
+                            </div>
+                            <div>
+                                <p className="text-slate-400 text-xs mb-1">LinkedIn</p>
+                                <p className="text-white text-sm group-hover:text-blue-400 transition">Connect with me</p>
+                            </div>
+                        </a>
 
                     </div>
 
-                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                        {/* Name */}
+                    {/* Right - Form */}
+                    <form onSubmit={handleSubmit}
+                        className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 flex flex-col gap-4">
+
                         <input
                             type="text"
                             name="name"
@@ -77,10 +107,9 @@ const ContactSection = () => {
                             value={formData.name}
                             onChange={handleChange}
                             required
-                            className="border border-gray-200 rounded-lg px-4 py-3 text-gray-600 outline-none focus:border-blue-500 transition"
+                            className="bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 text-slate-300 outline-none focus:border-blue-500 transition placeholder:text-slate-500"
                         />
 
-                        {/* Email */}
                         <input
                             type="email"
                             name="email"
@@ -88,10 +117,9 @@ const ContactSection = () => {
                             value={formData.email}
                             onChange={handleChange}
                             required
-                            className="border border-gray-200 rounded-lg px-4 py-3 text-gray-600 outline-none focus:border-blue-500 transition"
+                            className="bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 text-slate-300 outline-none focus:border-blue-500 transition placeholder:text-slate-500"
                         />
 
-                        {/* Message */}
                         <textarea
                             name="message"
                             placeholder="Your Message"
@@ -99,20 +127,18 @@ const ContactSection = () => {
                             onChange={handleChange}
                             rows={5}
                             required
-                            className="border border-gray-200 rounded-lg px-4 py-3 text-gray-600 outline-none focus:border-blue-500 transition resize-none"
+                            className="bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 text-slate-300 outline-none focus:border-blue-500 transition placeholder:text-slate-500 resize-none"
                         />
 
-                        {/* Submit Button */}
                         <button
                             type="submit"
                             disabled={loading}
-                            className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition font-medium disabled:opacity-50">
-                            {loading ? 'Sending...' : 'Send Message'}
+                            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition font-medium disabled:opacity-50">
+                            {loading ? 'Sending...' : 'Send Message →'}
                         </button>
 
                     </form>
                 </div>
-
             </div>
         </section>
     );

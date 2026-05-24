@@ -5,6 +5,8 @@ using MyPortFolio.Server.Repositories;
 using MyPortFolio.Server.Services.Interfaces;
 using MyPortFolio.Server.Services;
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true); 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -33,7 +35,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<PortfolioDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyCon")));
+builder.Services.AddDbContext<PortfolioDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("MyCon")));
 builder.Services.AddScoped<IAboutMeRepository, AboutMeRepository>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddScoped<IEducationRepository, EducationRepository>();

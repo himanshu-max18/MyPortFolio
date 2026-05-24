@@ -33,7 +33,7 @@ namespace MyPortFolio.Server.Data
             }
         }
 
-        private static void SeedAboutMe(PortfolioDbContext context) 
+        private static void SeedAboutMe(PortfolioDbContext context)
         {
             if (!context.AboutMe.Any())
             {
@@ -76,7 +76,7 @@ namespace MyPortFolio.Server.Data
             }
         }
 
-        private static void SeedEducation(PortfolioDbContext context) 
+        private static void SeedEducation(PortfolioDbContext context)
         {
             if (!context.Educations.Any())
             {
@@ -93,7 +93,7 @@ namespace MyPortFolio.Server.Data
             }
         }
 
-        private static void SeedExperience(PortfolioDbContext context) 
+        private static void SeedExperience(PortfolioDbContext context)
         {
             if (!context.Experiences.Any())
             {
@@ -102,7 +102,7 @@ namespace MyPortFolio.Server.Data
                     Company = "Blu Parrot Ventures Private Limited",
                     Role = ".NET Full Stack Developer",
                     Description = "Developed full-stack web applications using ASP.NET Core Web API, Entity Framework Core, and React. Built portfolio projects including CRUD apps, authentication systems, and RESTful APIs.",
-                    StartDate = new DateTime(2024, 04, 22),
+                    StartDate = DateTime.SpecifyKind(new DateTime(2024, 04, 22), DateTimeKind.Utc), // ✅ Fixed
                     EndDate = null,
                     IsCurrent = true,
                     IsActive = true,
@@ -111,8 +111,8 @@ namespace MyPortFolio.Server.Data
             }
         }
 
-        private static void SeedProjects(PortfolioDbContext context) 
-        { 
+        private static void SeedProjects(PortfolioDbContext context)
+        {
             if (!context.Projects.Any())
             {
                 context.Projects.AddRange(new Project
@@ -131,31 +131,32 @@ namespace MyPortFolio.Server.Data
             }
         }
 
-        private static void SeedSkills(PortfolioDbContext context) 
+        private static void SeedSkills(PortfolioDbContext context)
         {
             if (!context.Skills.Any())
             {
                 context.Skills.AddRange(
-                    new Skill { Name = "React", Category = "FrontEnd" },
-                    new Skill { Name = "HTML/CSS", Category = "FrontEnd" },
-                    new Skill { Name = "TailWindCss", Category = "FrontEnd" },
-                    new Skill { Name = "Bootstrap", Category = "FrontEnd" },
-                    new Skill { Name = "jQuery", Category = "FrontEnd" },
-                    new Skill { Name = "C#", Category = "BackEnd" },
-                    new Skill { Name = "ASP.NET Core", Category = "BackEnd" },
-                    new Skill { Name = "Entity Framework Core", Category = "BackEnd" },
-                    new Skill { Name = "LINQ", Category = "BackEnd" },
-                    new Skill { Name = "ADO.NET", Category = "BackEnd" },
-                    new Skill { Name = "SQL Server", Category = "DataBase" },
-                    new Skill { Name = "Git", Category = "Tools" },
-                    new Skill { Name = "GitHub", Category = "Tools" },
-                    new Skill { Name = "Visual Studio", Category = "Tools" },
-                    new Skill { Name = "VS Code", Category = "Tools" },
-                    new Skill { Name = "Postman", Category = "Tools" },
-                    new Skill { Name = "HTTPie", Category = "Tools" },
-                    new Skill { Name = "SQL Server Management Studio", Category = "Tools" }
+                    new Skill { Name = "React", Category = "FrontEnd", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "HTML/CSS", Category = "FrontEnd", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "TailWindCss", Category = "FrontEnd", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "Bootstrap", Category = "FrontEnd", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "jQuery", Category = "FrontEnd", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "C#", Category = "BackEnd", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "ASP.NET Core", Category = "BackEnd", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "Entity Framework Core", Category = "BackEnd", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "LINQ", Category = "BackEnd", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "ADO.NET", Category = "BackEnd", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "SQL Server", Category = "DataBase", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "PostgreSQL", Category = "DataBase", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "Git", Category = "Tools", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "GitHub", Category = "Tools", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "Visual Studio", Category = "Tools", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "VS Code", Category = "Tools", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "Postman", Category = "Tools", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "HTTPie", Category = "Tools", CreatedAt = DateTime.UtcNow, IsActive = true },
+                    new Skill { Name = "SQL Server Management Studio", Category = "Tools", CreatedAt = DateTime.UtcNow, IsActive = true }
                 );
             }
-        }            
+        }
     }
 }
