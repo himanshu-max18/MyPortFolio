@@ -31,6 +31,15 @@ const ProjectsSection = () => {
                             <div key={project.id}
                                 className="bg-slate-800 rounded-xl border border-slate-700/50 hover:border-violet-500/50 hover:shadow-lg hover:shadow-violet-500/10 transition p-6 flex flex-col gap-4">
 
+                                {/* Image */}
+                                {project.imageUrl && (
+                                    <img
+                                        src={project.imageUrl}
+                                        alt={project.title}
+                                        className="w-full h-48 object-cover rounded-lg"
+                                    />
+                                )}
+
                                 {/* Title */}
                                 <h3 className="text-xl font-semibold text-white">
                                     {project.title}
