@@ -2,28 +2,39 @@ import { useState, useEffect } from 'react';
 import { getExperience } from '../api/experienceApi';
 
 const useExperience = () => {
-    const [experience, Setexperience] = useState([]); // array kyunki multiple experience entries ho sakti hain
-    const [loading, Setloading] = useState(true); // initially loading true hai kyunki data fetch karna hai
-    const [error, SetError] = useState(null); // initially error null hai kyunki abhi tak koi error nahi aaya
+    const [experience, setExperience] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        let ignore = false;
+
         const fetchExperience = async () => {
             try {
-                const datq = await getExperience();
-                Setexperience(datq);
-                Setloading(false);
+                const data = await getExperience();
+                if (!ignore) {
+                    setExperience(data);
+                }
             }
             catch (err) {
-                SetError(err);
+                if (!ignore) {
+                    setError(err.message);
+                }
             }
             finally {
-                Setloading(false);
+                if (!ignore) {
+                    setLoading(false);
+                }
             }
         };
 
         fetchExperience();
+
+        return () => {
+            ignore = true;
+        };
     }, []);
 
-    return { experience, loading, error }; // return experience data, loading state and error state
+    return { experience, loading, error };
 };
 export default useExperience;

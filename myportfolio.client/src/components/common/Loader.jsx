@@ -1,7 +1,7 @@
-const Loader = () => {
+const Loader = ({ compact = false }) => {
     return (
-        <div className="min-h-screen flex items-center justify-center">
-            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin">
+        <div className={`${compact ? "min-h-48" : "min-h-screen"} flex items-center justify-center`}>
+            <div className="h-10 w-10 rounded-full border-2 border-blue-400/30 border-t-blue-400 animate-spin">
             </div>
         </div>
     );

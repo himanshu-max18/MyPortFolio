@@ -1,27 +1,38 @@
-import { useState, useEffect } from "react"   
+import { useState, useEffect } from "react";
 import { getProjects } from "../api/projectsApi";
 
 const useProjects = () => {
-    const [projects, SetProjects] = useState([]);
-    const [loading, Setloading] = useState(true);
-    const [error, SetError] = useState(null);
+    const [projects, setProjects] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        let ignore = false;
+
         const fetchProjects = async () => {
             try {
                 const data = await getProjects();
-                SetProjects(data);
-                Setloading(false);
+                if (!ignore) {
+                    setProjects(data);
+                }
             }
             catch (err) {
-                SetError(err.message);
+                if (!ignore) {
+                    setError(err.message);
+                }
             }
             finally {
-                Setloading(false);
+                if (!ignore) {
+                    setLoading(false);
+                }
             }
         };
+
         fetchProjects();
 
+        return () => {
+            ignore = true;
+        };
     }, []);
 
     return { projects, loading, error };

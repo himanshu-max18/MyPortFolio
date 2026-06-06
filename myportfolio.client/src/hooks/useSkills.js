@@ -2,28 +2,40 @@ import { useState, useEffect } from 'react';
 import { getSkills } from '../api/skillsApi';
 
 const useSkills = () => {
-    const [skills, setSkills] = useState([]); // array kyunki multiple skills ho sakti hain
-    const [loading, setLoading] = useState(true); // initially loading true hai kyunki data fetch karna hai
-    const [error, setError] = useState(null); // initially error null hai kyunki abhi tak koi error nahi aaya
+    const [skills, setSkills] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        let ignore = false;
+
         const fetchSkills = async () => {
             try {
                 const data = await getSkills();
-                setSkills(data);
-                setLoading(false);
+                if (!ignore) {
+                    setSkills(data);
+                }
             }
             catch (err) {
-                setError(err.message);
+                if (!ignore) {
+                    setError(err.message);
+                }
             }
             finally {
-                setLoading(false);
+                if (!ignore) {
+                    setLoading(false);
+                }
             }
         };
+
         fetchSkills();
+
+        return () => {
+            ignore = true;
+        };
     }, []);
 
-    return { skills, loading, error }; // return skills data, loading state and error state
+    return { skills, loading, error };
 };
 
 export default useSkills;

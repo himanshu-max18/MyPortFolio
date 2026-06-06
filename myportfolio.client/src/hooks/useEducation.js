@@ -2,30 +2,39 @@ import { useState, useEffect } from 'react';
 import { getEducation } from '../api/educationApi';
 
 const useEducation = () => {
-    const [education, Seteducation] = useState([]); //array kyunki multiple education entries ho sakti hain
-    const [loading, Setloading] = useState(true); // initially loading true hai kyunki data fetch karna hai
-    const [error, SetError] = useState(null); // initially error null hai kyunki abhi tak koi error nahi aaya
+    const [education, setEducation] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    // useEffect to fetch education data on component mount
     useEffect(() => {
-        // async function to fetch education data
+        let ignore = false;
+
         const fetchEducation = async () => {
             try {
                 const data = await getEducation();
-                Seteducation(data);
-                Setloading(false);
+                if (!ignore) {
+                    setEducation(data);
+                }
             }
             catch (err) {
-                SetError(err);
+                if (!ignore) {
+                    setError(err.message);
+                }
             }
             finally {
-                Setloading(false);
+                if (!ignore) {
+                    setLoading(false);
+                }
             }
         };
 
         fetchEducation();
+
+        return () => {
+            ignore = true;
+        };
     }, []);
 
-    return { education, loading, error }; // return education data, loading state and error state
+    return { education, loading, error };
 };
 export default useEducation;
