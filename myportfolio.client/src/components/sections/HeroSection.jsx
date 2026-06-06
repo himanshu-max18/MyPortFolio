@@ -36,7 +36,7 @@ const HeroSection = () => {
                         transition={{ duration: 0.5 }}
                         className="mb-5 inline-flex rounded-full border border-blue-300/20 bg-blue-300/10 px-4 py-2 text-sm font-medium text-blue-100"
                     >
-                        .NET Backend Developer
+                        FullStack .NET Developer
                     </motion.p>
 
                     <motion.h1
@@ -54,7 +54,7 @@ const HeroSection = () => {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="mt-6 text-lg leading-8 text-slate-300 sm:text-xl"
                     >
-                        I'm <span className="font-semibold text-white">{aboutMe?.fullName}</span>, a backend-focused developer working with ASP.NET Core, PostgreSQL, SQL Server, and React to ship practical, maintainable web apps.
+                        I'm <span className="font-semibold text-white">{aboutMe?.fullName}</span>, a FullStack backend-focused developer working with ASP.NET Core, PostgreSQL, SQL Server, and React to ship practical, maintainable web apps.
                     </motion.p>
 
                     <motion.p

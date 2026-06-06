@@ -17,8 +17,11 @@ const NavBar = () => {
         <nav className="fixed top-0 z-50 w-full border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
                 <a href="#about" className="group flex items-center gap-3" aria-label="Himanshu Rawat home">
-                    <span className="grid h-9 w-9 place-items-center rounded-lg border border-blue-400/30 bg-blue-400/10 text-sm font-bold text-blue-200">
-                        HR
+                    <span className="h-9 w-9 overflow-hidden rounded-md border border-blue-400/30 bg-blue-400/10">
+                    <img
+                        src="https://res.cloudinary.com/dngvdwg0z/image/upload/v1780733028/Himanshu_Profile_Picture_wnrxg4.jpg"
+                        alt="Himanshu Rawat"
+                        className="h-full w-full object-cover"/>
                     </span>
                     <span>
                         <span className="block text-sm font-semibold leading-none text-white">Himanshu Rawat</span>

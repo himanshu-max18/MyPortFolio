@@ -11,6 +11,27 @@ const categoryIcons = {
     Tools: Wrench,
 };
 
+const getSkillsImages = (name) => {
+    const images = {
+        'React': '/reactjs-icon.svg',
+        'HTML/CSS': '/html_css_icon.svg',
+        'TailwindCSS': '/tailwindcss-icon.svg',
+        'Bootstrap': '/getbootstrap-icon.svg',
+        'JavaScript': '/javascript-icon.svg',
+        'jQuery': 'jquery-icon.svg',
+        'C#': '/CSharp.svg',
+        'ASP.NET Core': '/1net-framework-96.svg',
+        'SQL Server': '/sql-server.svg',
+        'PostgreSQL': '/PostgresSQL.svg',
+        'Git': '/Git.svg',
+        'GitHub': '/github-logo-64.png',
+        'Visual Studio': '/vs.svg',
+        'Visual Studio Code': '/vscode.svg',
+        'Postman': '/Postman.svg',
+    };
+    return images[name] || null;
+};
+
 const getSkillInitials = (name) => (
     name
         .replace(".", " ")
@@ -79,11 +100,19 @@ const SkillsSection = () => {
 
                                             return (
                                                 <li key={skill.id} className="flex min-h-12 items-center gap-3 rounded-xl border border-white/10 bg-slate-950/45 px-3 py-2 text-slate-300 transition hover:border-white/20 hover:text-white">
-                                                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-blue-300/15 bg-blue-300/10 text-xs font-bold text-blue-100">
-                                                        {getSkillInitials(name)}
-                                                    </span>
-                                                    <span className="text-sm font-medium">{name}</span>
-                                                </li>
+                                                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-blue-300/15 bg-blue-300/10 text-xs font-bold text-blue-100">
+                                                    {getSkillsImages(name) ? (
+                                                        <img 
+                                                            src={getSkillsImages(name)} 
+                                                            alt={name}
+                                                            className="w-7 h-7 object-contain"
+                                                        />
+                                                    ) : (
+                                                        getSkillInitials(name)
+                                                    )}
+                                                </span>
+                                                <span className="text-sm font-medium">{name}</span>
+                                            </li>
                                             );
                                         })}
                                     </ul>

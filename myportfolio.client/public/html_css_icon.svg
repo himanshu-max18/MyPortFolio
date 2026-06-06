@@ -1,0 +1,33 @@
+<svg width="100%" viewBox="0 0 680 200" role="img" style="" xmlns="http://www.w3.org/2000/svg">
+<title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">HTML and CSS combined icon</title>
+<desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Two shield-shaped icons side by side representing HTML5 and CSS3</desc>
+
+<defs>
+  
+</defs>
+
+<!-- HTML5 Shield -->
+<g transform="translate(240, 20)" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <!-- Shield shape -->
+  <path d="M10 0 L90 0 L82 90 L50 100 L18 90 Z" fill="#E44D26" style="fill:rgb(228, 77, 38);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <path d="M50 10 L50 92 L76 83 L82 10 Z" fill="#F16529" style="fill:rgb(241, 101, 41);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- H5 text -->
+  <text x="50" y="65" text-anchor="middle" fill="white" font-size="36" font-weight="900" font-family="Arial" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial;font-size:36px;font-weight:900;text-anchor:middle;dominant-baseline:auto">H</text>
+  <text x="72" y="65" text-anchor="middle" fill="white" font-size="20" font-weight="900" font-family="Arial" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial;font-size:20px;font-weight:900;text-anchor:middle;dominant-baseline:auto">5</text>
+</g>
+
+<!-- CSS3 Shield -->
+<g transform="translate(350, 20)" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <!-- Shield shape -->
+  <path d="M10 0 L90 0 L82 90 L50 100 L18 90 Z" fill="#264DE4" style="fill:rgb(38, 77, 228);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <path d="M50 10 L50 92 L76 83 L82 10 Z" fill="#2965F1" style="fill:rgb(41, 101, 241);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- C3 text -->
+  <text x="50" y="65" text-anchor="middle" fill="white" font-size="36" font-weight="900" font-family="Arial" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial;font-size:36px;font-weight:900;text-anchor:middle;dominant-baseline:auto">C</text>
+  <text x="72" y="65" text-anchor="middle" fill="white" font-size="20" font-weight="900" font-family="Arial" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial;font-size:20px;font-weight:900;text-anchor:middle;dominant-baseline:auto">3</text>
+</g>
+
+<!-- Labels -->
+<text x="290" y="145" text-anchor="middle" fill="#E44D26" font-size="14" font-weight="700" font-family="Arial" style="fill:rgb(228, 77, 38);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial;font-size:14px;font-weight:700;text-anchor:middle;dominant-baseline:auto">HTML5</text>
+<text x="400" y="145" text-anchor="middle" fill="#264DE4" font-size="14" font-weight="700" font-family="Arial" style="fill:rgb(38, 77, 228);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial;font-size:14px;font-weight:700;text-anchor:middle;dominant-baseline:auto">CSS3</text>
+
+</svg>
